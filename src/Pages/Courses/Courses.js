@@ -4,6 +4,7 @@ import CoursesSummaryCart from '../Shared/CoursesSummaryCart/CoursesSummaryCart'
 
 const Courses = () => {
     const courses = useLoaderData();
+    console.log(courses);
     return (
         <div>
             <h2>Courses number: {courses.length}</h2>

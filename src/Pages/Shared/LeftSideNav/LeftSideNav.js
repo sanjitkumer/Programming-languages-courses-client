@@ -18,12 +18,21 @@ const LeftSideNav = () => {
         .then(data => setCategories(data));
     },[])
 
-    const {providerLogin} = useContext(AuthContext);
+    const {providerLogin,gitLogin} = useContext(AuthContext);
 
     const googleProvider = new GoogleAuthProvider()
 
     const handleGoogleSignIn = () =>{
         providerLogin(googleProvider)
+        .then(result =>{
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(error => console.error(error))
+
+    }
+    const handleGitSignIn = () =>{
+        gitLogin()
         .then(result =>{
             const user = result.user;
             console.log(user);
@@ -37,14 +46,14 @@ const LeftSideNav = () => {
             <div>
             <ButtonGroup vertical>
                 <Button onClick={handleGoogleSignIn} className='mb-2' variant='outline-primary' > <FaGoogle> </FaGoogle>  Login With Google</Button>
-                <Button className='mb-2' variant='outline-primary'><FaGithub> </FaGithub>   Login with Github</Button>
+                <Button onClick={handleGitSignIn} className='mb-2' variant='outline-primary'><FaGithub> </FaGithub>   Login with Github</Button>
             </ButtonGroup>
             </div>
             <h4>All category: {categories.length}</h4>
             <div>
                 {
                     categories.map(category => <p key={category.id}>
-                        <Link to={`/courses/${category.id}`} >{category.name}</Link>
+                        <Link to={`/allCourses/${category.id}`} >{category.name}</Link>
                     </p> )
                 }
             </div>

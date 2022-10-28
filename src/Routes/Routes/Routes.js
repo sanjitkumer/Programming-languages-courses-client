@@ -9,6 +9,7 @@ import FAQ from "../../Pages/FAQ/FAQ";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login/Login";
 import Register from "../../Pages/Login/Register/Register";
+import TermsAndConditions from "../../Pages/Other/TermsAndConditions/TermsAndConditions";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const routes = createBrowserRouter([
@@ -29,7 +30,7 @@ export const routes = createBrowserRouter([
             },
 
             {
-                path: '/courses/:id',
+                path: '/allCourses/:id',
                 element: <Courses></Courses>,
                 loader: ({params}) => fetch(`http://localhost:5000/category/${params.id}`)
             },
@@ -44,8 +45,8 @@ export const routes = createBrowserRouter([
 
             {
                 path: '/courses/:id',
-                element: <PrivateRoute> <Details></Details> </PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/category/${params.id}`)
+                element: <Details></Details>,
+                loader: ({params}) => fetch(`http://localhost:5000/courses/${params.id}`)
             },
             {
                 path:'/login',
@@ -54,6 +55,11 @@ export const routes = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/courses/:id/purchase',
+                element: <PrivateRoute> <TermsAndConditions></TermsAndConditions> </PrivateRoute> ,
+                loader: ({params}) => fetch(`http://localhost:5000/courses/${params.id}`)
             }
         ]
     }

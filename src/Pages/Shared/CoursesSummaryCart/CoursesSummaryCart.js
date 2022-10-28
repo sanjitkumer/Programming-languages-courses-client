@@ -4,13 +4,16 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 import { FaDownload } from "react-icons/fa";
+import Pdf from "react-to-pdf"
+
+const ref = React.createRef();
 
 
 
 const CoursesSummaryCart = ({courses}) => {
     const {_id, title, author,  details, image_url} = courses;
     return (
-        <Card className="mb-5">
+        <Card ref={ref} className="mb-5">
         <Card.Header className="d-flex justify-content-between">
           <div className='d-flex'>
             <Image
@@ -25,7 +28,10 @@ const CoursesSummaryCart = ({courses}) => {
             </div>
           </div>
           <div>
-            <FaDownload></FaDownload>
+            <Pdf targetRef={ref} filename="code-example.pdf">
+              {({toPdf})=> <button onClick={toPdf}>Download Curriculum PDF<FaDownload></FaDownload> </button> }
+            </Pdf>
+            
           </div>
         </Card.Header>
 
@@ -38,12 +44,11 @@ const CoursesSummaryCart = ({courses}) => {
                 <p>{details.slice(0, 250) + '...'} <Link to ={`/courses/${_id}`}>Read more</Link> </p>
                 :
                 <p>{details}</p>
-            }
-            
-          </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
+            }            
+          </Card.Text>         
         </Card.Body>
-        <Card.Footer className="text-muted">2 days ago</Card.Footer>
+        
+        <Card.Footer className="text-muted">copyright</Card.Footer>
       </Card>
     );
 };
