@@ -21,18 +21,18 @@ export const routes = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: () => fetch('http://localhost:5000/courses')
+                loader: () => fetch('https://programming-languages-server-phi.vercel.app/courses')
             },
             {
                 path:'/category/:id',
                 element:<Category></Category>,
-                loader: ({params}) => fetch(`http://localhost:5000/category/${params.id}`)
+                loader: ({params}) => fetch(`https://programming-languages-server-phi.vercel.app/category/${params.id}`)
             },
 
             {
                 path: '/allCourses/:id',
                 element: <Courses></Courses>,
-                loader: ({params}) => fetch(`http://localhost:5000/category/${params.id}`)
+                loader: ({params}) => fetch(`https://programming-languages-server-phi.vercel.app/category/${params.id}`)
             },
             {
                 path:'/blog',
@@ -46,7 +46,7 @@ export const routes = createBrowserRouter([
             {
                 path: '/courses/:id',
                 element: <Details></Details>,
-                loader: ({params}) => fetch(`http://localhost:5000/courses/${params.id}`)
+                loader: ({params}) => fetch(`https://programming-languages-server-phi.vercel.app/courses/${params.id}`)
             },
             {
                 path:'/login',
@@ -59,7 +59,7 @@ export const routes = createBrowserRouter([
             {
                 path: '/courses/:id/purchase',
                 element: <PrivateRoute> <TermsAndConditions></TermsAndConditions> </PrivateRoute> ,
-                loader: ({params}) => fetch(`http://localhost:5000/courses/${params.id}`)
+                loader: ({params}) => fetch(`https://programming-languages-server-phi.vercel.app/courses/${params.id}`)
             }
         ]
     }

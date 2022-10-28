@@ -47,7 +47,7 @@ const Header = () => {
                
                 :
                 <>
-                <Link className='p-2' variant="primary" to= '/login'> Login</Link>
+                <Link to= '/login'> Login</Link>
                 <Link to='/register'>Register</Link>
                 </>
               }
